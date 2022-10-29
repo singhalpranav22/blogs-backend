@@ -5,6 +5,7 @@ import com.pranav.blog.exceptions.ResourceNotFoundException;
 import com.pranav.blog.payloads.UserDto;
 import com.pranav.blog.repositories.UserRepo;
 import com.pranav.blog.services.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public UserDto addUser(UserDto userDto) {
@@ -55,22 +59,14 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDto userToUserDto(User user){
-        UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setAbout(user.getAbout());
-        userDto.setName(user.getName());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
+        UserDto userDto;
+        userDto = modelMapper.map(user,UserDto.class);
         return userDto;
     }
 
     private User userDtoToUser(UserDto userDto){
-        User user = new User();
-        user.setId(userDto.getId());
-        user.setAbout(userDto.getAbout());
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        User user;
+        user = modelMapper.map(userDto,User.class);
         return user;
 
     }
