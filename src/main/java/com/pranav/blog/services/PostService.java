@@ -1,5 +1,6 @@
 package com.pranav.blog.services;
 
+import com.pranav.blog.payloads.CommentDto;
 import com.pranav.blog.payloads.PostDto;
 import com.pranav.blog.payloads.PostsResponse;
 

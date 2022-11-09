@@ -1,6 +1,5 @@
 package com.pranav.blog.payloads;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +7,8 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -23,4 +24,5 @@ public class PostDto {
     private Date updatedOn;
     private UserDto user;
     private CategoryDto category;
+    private Set<CommentDto> comments = new HashSet<>();
 }

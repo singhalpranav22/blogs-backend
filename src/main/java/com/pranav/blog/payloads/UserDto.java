@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -21,4 +23,5 @@ public class UserDto {
     @NotEmpty(message = "About field cannot be empty.")
     @Size(max = 100,message = "About can be at most 100 characters long.")
     private String about;
+    private Set<CommentDto> comments = new HashSet<>();
 }

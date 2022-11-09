@@ -40,7 +40,7 @@ public class PostServiceImpl implements PostService {
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user","UserId",userId));
         Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("category","CategoryId",categoryId));
         if(postDto.getCoverImage()==null)
-            postDto.setCoverImage("https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+            postDto.setCoverImage("images/default.png");
         postDto.setPostedOn(new java.util.Date());
         postDto.setUpdatedOn(new java.util.Date());
         Post post = modelMapper.map(postDto, Post.class);
