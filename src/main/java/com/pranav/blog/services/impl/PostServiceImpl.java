@@ -1,5 +1,4 @@
 package com.pranav.blog.services.impl;
-
 import com.pranav.blog.entities.Category;
 import com.pranav.blog.entities.Post;
 import com.pranav.blog.entities.User;
@@ -14,7 +13,6 @@ import com.pranav.blog.repositories.UserRepo;
 import com.pranav.blog.services.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
