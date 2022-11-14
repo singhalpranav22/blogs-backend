@@ -1,12 +1,15 @@
 package com.pranav.blog.services.impl;
 
+import com.pranav.blog.entities.Role;
 import com.pranav.blog.entities.User;
 import com.pranav.blog.exceptions.ResourceNotFoundException;
 import com.pranav.blog.payloads.UserDto;
+import com.pranav.blog.repositories.RoleRepo;
 import com.pranav.blog.repositories.UserRepo;
 import com.pranav.blog.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,22 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepo roleRepo;
+
+    @Override
+    public UserDto registerUser(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role role = this.roleRepo.findById(1).get();
+        user.getRoles().add(role);
+        User savedUser = this.userRepo.save(user);
+        return modelMapper.map(savedUser, UserDto.class);
+    }
 
     @Override
     public UserDto addUser(UserDto userDto) {

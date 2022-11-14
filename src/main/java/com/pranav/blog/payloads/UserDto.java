@@ -24,4 +24,5 @@ public class UserDto {
     @Size(max = 100,message = "About can be at most 100 characters long.")
     private String about;
     private Set<CommentDto> comments = new HashSet<>();
+    private Set<RoleDto> roles = new HashSet<>();
 }

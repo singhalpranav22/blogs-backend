@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 @NoArgsConstructor
 @Getter
 @Setter
@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private int id;
     @Column(name = "user_name",nullable = false,length = 100)
     private String name;
+    @Column(unique = true)
     private String email;
     private String password;
     private String about;
